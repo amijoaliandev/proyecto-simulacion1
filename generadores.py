@@ -60,3 +60,76 @@ resultados_decimales, enteros_x = generar_congruencial(mi_semilla, multiplicador
 print("Valores enteros generados (X_i):", enteros_x)
 print("Números pseudoaleatorios (R_i) entre 0 y 1:")
 print(resultados_decimales)
+# =====================================================================
+# MÉTODO CONGRUENCIAL MIXTO
+# =====================================================================
+def generar_congruencial(semilla, a, c, m, cantidad):
+    numeros_generados = []
+    valores_x = []
+    x_actual = semilla
+    for i in range(cantidad):
+        x_siguiente = (a * x_actual + c) % m
+        r_i = x_siguiente / m
+        numeros_generados.append(r_i)
+        valores_x.append(x_siguiente)
+        x_actual = x_siguiente
+    return numeros_generados, valores_x
+
+
+# =====================================================================
+# MÉTODO DE CUADRADOS MEDIOS
+# =====================================================================
+# Le pedimos una semilla de 4 dígitos y cuántos números queremos generar
+def generar_cuadrados_medios(semilla, cantidad):
+    numeros_generados = []
+    valores_x = []
+    x_actual = semilla
+    
+    for i in range(cantidad):
+        # 1. Elevamos al cuadrado
+        cuadrado = x_actual ** 2
+        
+        # Convertimos el número a texto (string) para poder manipular sus dígitos fácilmente
+        cadena_cuadrado = str(cuadrado)
+        
+        # 2. Si el número al cuadrado tiene menos de 8 dígitos, le agregamos ceros a la izquierda
+        # .zfill(8) hace exactamente eso de manera automática en Python
+        cadena_rellenada = cadena_cuadrado.zfill(8)
+        
+        # 3. Extraemos los 4 dígitos centrales.
+        # En Python, el texto funciona como una lista. Del índice 2 al 6 tomamos el centro:
+        # Ejemplo: "32 7641 76" -> Índices de posición: 01 2345 67. Tomamos de la posición 2 a la 5.
+        digitos_centro = cadena_rellenada[2:6]
+        
+        # Convertimos de nuevo ese texto a un número entero X_i
+        x_siguiente = int(digitos_centro)
+        
+        # 4. Convertimos a un decimal R_i entre 0 y 1 dividiéndolo por 10,000
+        r_i = x_siguiente / 10000.0
+        
+        # Guardamos los resultados
+        numeros_generados.append(r_i)
+        valores_x.append(x_siguiente)
+        
+        # Preparamos la semilla para la siguiente iteración
+        x_actual = x_siguiente
+        
+    return numeros_generados, valores_x
+
+
+# --- SECCIÓN DE PRUEBAS ---
+# Probamos el Congruencial Mixto
+res_dec_cong, enteros_x_cong = generar_congruencial(semilla=45, a=21, c=15, m=100, cantidad=6)
+
+# Probamos Cuadrados Medios (usamos una semilla clásica de 4 dígitos)
+res_dec_cuad, enteros_x_cuad = generar_cuadrados_medios(semilla=5724, cantidad=6)
+
+# Imprimimos ambos resultados de forma ordenada
+print("=== RESULTADOS DEL MÉTODO CONGRUENCIAL MIXTO ===")
+print("Valores enteros (X_i):", enteros_x_cong)
+print("Números R_i:", res_dec_cong)
+print("\n")
+
+print("=== RESULTADOS DEL MÉTODO DE CUADRADOS MEDIOS ===")
+print("Valores enteros (X_i):", enteros_x_cuad)
+print("Números R_i:", res_dec_cuad)
