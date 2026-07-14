@@ -1,9 +1,7 @@
 import math
 from generadores import generar_congruencial, generar_cuadrados_medios
 
-# =====================================================================
-# PRUEBAS ESTADÍSTICAS NATIVAS (SIN LIBRERÍAS EXTERNAS)
-# =====================================================================
+# PRUEBAS ESTADÍSTICAS NATIVAS
 
 def prueba_de_medias(numeros, alpha=0.05):
     """
@@ -116,9 +114,8 @@ def ejecutar_reporte(numeros, nombre_metodo):
     print("-" * 65)
     print("\n")
 
-# =====================================================================
 # EJECUCIÓN AUTOMÁTICA
-# =====================================================================
+
 print("Iniciando validación de generadores...\n")
 
 # Evaluamos Congruencial Mixto

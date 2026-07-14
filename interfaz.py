@@ -2,9 +2,8 @@ import tkinter as tk
 from tkinter import messagebox, scrolledtext
 import math
 
-# =====================================================================
 # LÓGICA DE LOS GENERADORES (MÉTODOS NATIVOS)
-# =====================================================================
+
 def generar_congruencial(semilla, a, c, m, cantidad):
     numeros_generados = []
     x_actual = semilla
@@ -26,9 +25,8 @@ def generar_cuadrados_medios(semilla, cantidad):
         x_actual = x_siguiente
     return numeros_generados
 
-# =====================================================================
-# MÉTODO DE INVERSIÓN (DE LA PIZARRA)
-# =====================================================================
+# MÉTODO DE INVERSIÓN 
+
 def simular_dado_inversion(numeros):
     resultados = []
     for r in numeros:
@@ -50,9 +48,8 @@ def simular_binomial_inversion(numeros):
                 break
     return resultados
 
-# =====================================================================
 # LÓGICA DE LAS PRUEBAS ESTADÍSTICAS
-# =====================================================================
+
 def evaluar_numeros(numeros):
     n = len(numeros)
     if n == 0: return "No hay números para evaluar."
@@ -101,10 +98,8 @@ def evaluar_numeros(numeros):
     reporte += "=====================================================\n"
     return reporte
 
-# =====================================================================
 # ACCIONES
-# =====================================================================
-def accion_congruencial():
+
     try:
         semilla = int(entrada_semilla.get())
         a = int(entrada_a.get())
@@ -130,9 +125,8 @@ def accion_cuadrados():
     except ValueError:
         messagebox.showerror("Error", "Ingresa un número entero de 4 dígitos.")
 
-# =====================================================================
 # DISEÑO DE LA APLICACIÓN (Look Moderno & Minimalista)
-# =====================================================================
+
 COLOR_BG = "#F4F6F9"         # Gris claro de fondo moderno
 COLOR_CARD = "#FFFFFF"       # Blanco para los paneles
 COLOR_TEXTO = "#2C3E50"      # Azul oscuro para las letras

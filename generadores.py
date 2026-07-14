@@ -1,30 +1,28 @@
-# =====================================================================
 # MÉTODO CONGRUENCIAL MIXTO
-# =====================================================================
 
-# Definimos una "función". Velo como una máquina o una receta.
+# Definimos una "función".
 # Le damos un nombre ('generar_congruencial') y le decimos qué datos necesita para funcionar:
 # - semilla: el número de arranque
 # - a: el multiplicador
 # - c: la constante aditiva
 # - m: el módulo
-# - cantidad: cuántos números queremos generar (en tu cuaderno piden 6)
+# - cantidad: cuántos números queremos generar
 def generar_congruencial(semilla, a, c, m, cantidad):
     
-    # Creamos una lista vacía para ir guardando los números decimales (entre 0 y 1)
+    # Creamos una lista vacía para ir guardando los números decimales entre 0 y 1
     numeros_generados = []
     
-    # Creamos otra lista vacía para guardar los valores enteros X (por si queremos verlos)
+    # Creamos otra lista vacía para guardar los valores enteros X por si queremos verlos
     valores_x = []
     
     # Empezamos nuestro valor actual con la semilla que el usuario decida
     x_actual = semilla
     
-    # Hacemos un ciclo "for". Esto le dice a Python: "repite estas instrucciones
-    # tantas veces como diga la variable 'cantidad'"
+    # Hacemos un ciclo "for". Esto le dice a Python: "repite estas instrucciones tantas veces como diga la variable 'cantidad'"
+    
     for i in range(cantidad):
         
-        # Aplicamos la fórmula del cuaderno:
+        # Aplicamos la fórmula 
         # En Python, el símbolo '*' es multiplicación y '%' es el operador MÓDULO (residuo)
         x_siguiente = (a * x_actual + c) % m
         
@@ -37,7 +35,7 @@ def generar_congruencial(semilla, a, c, m, cantidad):
         # Guardamos el entero X en nuestra lista de enteros
         valores_x.append(x_siguiente)
         
-        # IMPORTANTE: El número que acabamos de calcular (x_siguiente) se convierte
+        # El número que acabamos de calcular (x_siguiente) se convierte
         # en el número inicial (x_actual) para la siguiente vuelta del ciclo
         x_actual = x_siguiente
         
@@ -46,7 +44,7 @@ def generar_congruencial(semilla, a, c, m, cantidad):
 
 
 # --- PRUEBA DEL GENERADOR ---
-# Para comprobar que funciona, vamos a darle unos valores iniciales de prueba:
+# valores iniciales de prueba:
 mi_semilla = 45
 multiplicador_a = 21
 constante_c = 15
@@ -60,9 +58,9 @@ resultados_decimales, enteros_x = generar_congruencial(mi_semilla, multiplicador
 print("Valores enteros generados (X_i):", enteros_x)
 print("Números pseudoaleatorios (R_i) entre 0 y 1:")
 print(resultados_decimales)
-# =====================================================================
+
 # MÉTODO CONGRUENCIAL MIXTO
-# =====================================================================
+
 def generar_congruencial(semilla, a, c, m, cantidad):
     numeros_generados = []
     valores_x = []
@@ -76,9 +74,8 @@ def generar_congruencial(semilla, a, c, m, cantidad):
     return numeros_generados, valores_x
 
 
-# =====================================================================
 # MÉTODO DE CUADRADOS MEDIOS
-# =====================================================================
+
 # Le pedimos una semilla de 4 dígitos y cuántos números queremos generar
 def generar_cuadrados_medios(semilla, cantidad):
     numeros_generados = []
