@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, scrolledtext
 import math
 
-# LÓGICA DE LOS GENERADORES (MÉTODOS NATIVOS)
+# 1. LÓGICA DE LOS GENERADORES (MÉTODOS NATIVOS)
 
 def generar_congruencial(semilla, a, c, m, cantidad):
     numeros_generados = []
@@ -25,7 +25,7 @@ def generar_cuadrados_medios(semilla, cantidad):
         x_actual = x_siguiente
     return numeros_generados
 
-# MÉTODO DE INVERSIÓN 
+# 2. MÉTODO DE INVERSIÓN (DE LA PIZARRA)
 
 def simular_dado_inversion(numeros):
     resultados = []
@@ -48,7 +48,7 @@ def simular_binomial_inversion(numeros):
                 break
     return resultados
 
-# LÓGICA DE LAS PRUEBAS ESTADÍSTICAS
+# 3. LÓGICA DE LAS PRUEBAS ESTADÍSTICAS
 
 def evaluar_numeros(numeros):
     n = len(numeros)
@@ -98,8 +98,9 @@ def evaluar_numeros(numeros):
     reporte += "=====================================================\n"
     return reporte
 
-# ACCIONES
+# 4. ACCIONES DE LOS BOTONES (DEFINIDAS ANTES DE LA INTERFAZ)
 
+def accion_congruencial():
     try:
         semilla = int(entrada_semilla.get())
         a = int(entrada_a.get())
@@ -125,13 +126,13 @@ def accion_cuadrados():
     except ValueError:
         messagebox.showerror("Error", "Ingresa un número entero de 4 dígitos.")
 
-# DISEÑO DE LA APLICACIÓN (Look Moderno & Minimalista)
+# 5. DISEÑO DE LA APLICACIÓN
 
-COLOR_BG = "#F4F6F9"         # Gris claro de fondo moderno
-COLOR_CARD = "#FFFFFF"       # Blanco para los paneles
-COLOR_TEXTO = "#2C3E50"      # Azul oscuro para las letras
-COLOR_PRIMARY = "#3498DB"    # Azul para botones congruenciales
-COLOR_SECONDARY = "#2ECC71"  # Verde para botones cuadrados medios
+COLOR_BG = "#F4F6F9"
+COLOR_CARD = "#FFFFFF"
+COLOR_TEXTO = "#2C3E50"
+COLOR_PRIMARY = "#3498DB"
+COLOR_SECONDARY = "#2ECC71"
 
 ventana = tk.Tk()
 ventana.title("Simulador y Validador de Modelos Estocásticos")
@@ -139,17 +140,16 @@ ventana.geometry("640x720")
 ventana.configure(bg=COLOR_BG)
 ventana.resizable(False, False)
 
-# Encabezado Estilizado
+# Encabezado
 frame_header = tk.Frame(ventana, bg="#2C3E50", height=60)
 frame_header.pack(fill="x", pady=(0, 15))
 lbl_titulo = tk.Label(frame_header, text="LABORATORIO DE SIMULACIÓN", font=("Segoe UI", 14, "bold"), fg="#FFFFFF", bg="#2C3E50")
 lbl_titulo.pack(pady=15)
 
-# --- PANEL CONGRUENCIAL MIXTO ---
+# Panel Congruencial Mixto
 frame_cong = tk.LabelFrame(ventana, text=" Método Congruencial Mixto ", font=("Segoe UI", 10, "bold"), bg=COLOR_CARD, fg=COLOR_TEXTO, bd=1, relief="solid", padx=15, pady=10)
 frame_cong.pack(fill="x", padx=20, pady=5)
 
-# Estilo de etiquetas internas
 estilo_lbl = {"bg": COLOR_CARD, "fg": COLOR_TEXTO, "font": ("Segoe UI", 9)}
 
 tk.Label(frame_cong, text="Semilla (X0):", **estilo_lbl).grid(row=0, column=0, sticky="e", pady=4)
@@ -172,10 +172,11 @@ entrada_m = tk.Entry(frame_cong, width=8, font=("Segoe UI", 9))
 entrada_m.insert(0, "100")
 entrada_m.grid(row=1, column=3, padx=5)
 
+# Aquí creamos el botón AHORA QUE LA FUNCIÓN YA EXISTE ARRIBA
 btn_cong = tk.Button(frame_cong, text="Simular Sistema", command=accion_congruencial, bg=COLOR_PRIMARY, fg="white", font=("Segoe UI", 10, "bold"), bd=0, cursor="hand2", activebackground="#2980B9", activeforeground="white")
 btn_cong.grid(row=0, column=4, rowspan=2, padx=20, ipadx=10, ipady=5, sticky="nsew")
 
-# --- PANEL CUADRADOS MEDIOS ---
+# Panel Cuadrados Medios
 frame_cuad = tk.LabelFrame(ventana, text=" Método de Cuadrados Medios ", font=("Segoe UI", 10, "bold"), bg=COLOR_CARD, fg=COLOR_TEXTO, bd=1, relief="solid", padx=15, pady=10)
 frame_cuad.pack(fill="x", padx=20, pady=10)
 
@@ -187,7 +188,7 @@ entrada_semilla_cuad.grid(row=0, column=1, padx=10)
 btn_cuad = tk.Button(frame_cuad, text="Simular Sistema", command=accion_cuadrados, bg=COLOR_SECONDARY, fg="white", font=("Segoe UI", 10, "bold"), bd=0, cursor="hand2", activebackground="#27AE60", activeforeground="white")
 btn_cuad.grid(row=0, column=2, padx=45, ipadx=10, ipady=4)
 
-# --- PANEL CONSOLA DE RESULTADOS ---
+# Consola de resultados
 frame_resultados = tk.Frame(ventana, bg=COLOR_BG)
 frame_resultados.pack(fill="both", expand=True, padx=20, pady=(5, 20))
 
